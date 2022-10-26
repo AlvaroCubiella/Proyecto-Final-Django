@@ -11,6 +11,10 @@
         <link rel="icon" type="image/x-icon" href="static/blog/assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet" />
+    
+        <!-- <link href="./index_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
     </head>
     <body>
 
@@ -43,43 +47,19 @@
         <div class="container">
             <div class="row">
                 <!-- Blog entries-->
-                <div class="col-lg-8">
-                    <!-- Featured blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="{% static 'blog/img/esto_no_es_una_lata.jpg' %}" alt="Foto de una lata" /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">October 22, 2022</div>
-                            <h2 class="card-title">Aprendiendo a reciclar</h2>
-                            <p class="card-text">Las latas de aluminio tardan aproximadamente 400 años en descomponerse cuando se dejan en un vertedero. Es por esto que reciclar las latas de aluminio aporta importantes beneficios tanto medioambientales, como económicos y sociales:</p>
-                            <a class="btn btn-primary" href="#!">Leer más →</a>
-                        </div>
-                    </div>
-                        <!-- Nested row for non-featured blog posts -->
-                    <div class="row">
-                        <div class="col-lg-6">
-                            {% block left_col %}
+                <div class="col-lg-8">     
+                    {% block new %}
+                        <!-- Aca genero la nota mas reciente -->
+                    {% endblock %}
+                    
+                    {% block columns %}
+                        <!-- genero las dos columnas con dos filas para colocar 4 articulos por paguina -->
+                    {% endblock %}
 
-                            {% endblock %}
-                        </div>
-                        <div class="col-lg-6">
-                            {% block rigth_col %}
-
-                            {% endblock %}
-                        </div>
-                    </div> 
                     <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
-                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                            <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                            <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                            <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                        </ul>
-                    </nav>
+                    {% block pages %}
+
+                    {% endblock %}
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">

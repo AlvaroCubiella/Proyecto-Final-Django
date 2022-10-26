@@ -26,6 +26,9 @@ class Article(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     date_published = models.DateTimeField()
 
+    def __str__(self) -> str:
+        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}"
+
 
 class Portal(models.Model):
     name = models.CharField(max_length=20)

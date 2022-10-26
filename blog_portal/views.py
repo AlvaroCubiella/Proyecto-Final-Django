@@ -5,10 +5,20 @@ from blog_portal.models import Article, Portal
 def index(request):
     return render(request, 'blog_portal/index.html')
 
+# Calculo las cantidad de pag. a generar a partir de la cantidad de articulos encontrados
+def set_pages(instance):
+    articles = instance.objects.all()
+    pages = len(articles)/4
+    if round(pages) < pages:
+        pages += 0.4
+    pages = round(pages)
+    pages = range(1, pages+1)
+    return pages
+
 class BaseView(View):
 
      def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)  # type: ignore
         context['headline'] = Article.objects.filter(is_headline=True).order_by('date_updated').first()
         context['portal'] = Portal.objects.order_by('date_updated').first()
         return context 
@@ -19,15 +29,41 @@ class MainPageView(BaseView, ListView):
     template_name = "blog_portal/index.html"
 
     def get(self, request):
-        article = Article.objects.all()
+        # Cargo los articulos ordenados por fecha. Reverse es para poner la fecha mas reciente primera en la lista
+        article = Article.objects.order_by('date_created').reverse()            
+        left_col = article[0::2]            # Obtengo los impares de la lsita para armar la columna izquierda
+        rigth_col = article[1::2]           # Obtengo los pares de la lsita para armar la columna derecha
+        pages = set_pages(Article)
+        # Configuro la cabecera del html
         headline = {
             'title':'ABA Blogs Inicio',
             'headline':'Bienvenido a ABA Blog!',
-            'sub':'Un trabajo de Agustina, Bruno y Alvaro para Coderhouse'
-
+            'sub':'Un trabajo de Agustina, Bruno y Alvaro para Coderhouse',
+            'pages': pages,           
         }
-        return render(request, self.template_name, {'headline':headline})
     
+        # Configuro la vista de la nota mas reciente
+        new = {
+            'date_created': left_col[0].date_created,    
+            'title': left_col[0].title,
+            'short_content': left_col[0].short_content,
+            'image': left_col[0].image,
+        }
+        
+        # Paso la lista de los articulos para la columna izquierda
+        left_col = {
+            'left_col': left_col,
+        }
+        
+        # Paso la lista de los articulos para la columna derecha
+        rigth_col = {
+            'rigth_col': rigth_col,
+        }
+
+        return render(request, self.template_name, {'headline':headline, 'left_col':left_col, 'rigth_col':rigth_col, 'new':new})
+    
+    
+
 
 class About(BaseView, TemplateView):
 
