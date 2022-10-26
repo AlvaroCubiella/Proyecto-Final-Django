@@ -21,7 +21,7 @@ class MainPageView(BaseView, ListView):
     def get(self, request):
         article = Article.objects.all()
         headline = {
-            'tab':'ABA Blogs Inicio',
+            'title':'ABA Blogs Inicio',
             'headline':'Bienvenido a ABA Blog!',
             'sub':'Un trabajo de Agustina, Bruno y Alvaro para Coderhouse'
 
@@ -32,3 +32,13 @@ class MainPageView(BaseView, ListView):
 class About(BaseView, TemplateView):
 
     template_name = "blog_portal/about.html"
+
+class ArticleDetailView(DetailView):
+
+    model = Article
+    context_object_name = "article"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['portal'] = Portal.objects.order_by('date_updated').first()
+        return context
