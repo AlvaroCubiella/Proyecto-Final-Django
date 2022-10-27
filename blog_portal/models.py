@@ -27,7 +27,7 @@ class Article(models.Model):
     date_published = models.DateTimeField()
 
     def __str__(self) -> str:
-        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}"
+        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}: image:{self.image}"
 
 
 class Portal(models.Model):
@@ -37,4 +37,7 @@ class Portal(models.Model):
     email = models.EmailField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return f"{self.name}"
 

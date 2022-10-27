@@ -1,6 +1,10 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView, View
 from blog_portal.models import Article, Portal
+from proyecto.settings import BASE_DIR
+
+import os
+
 
 def index(request):
     return render(request, 'blog_portal/index.html')
@@ -49,7 +53,7 @@ class MainPageView(BaseView, ListView):
             'short_content': left_col[0].short_content,
             'image': left_col[0].image,
         }
-        
+
         # Paso la lista de los articulos para la columna izquierda
         left_col = {
             'left_col': left_col,

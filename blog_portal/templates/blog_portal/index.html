@@ -6,7 +6,7 @@
 
 {% block new %}
 <div class="card mb-4">
-    <a href="#!"><img class="card-img-top" src={{new.image}} alt="Foto de una lata" /></a>
+    <a href="#!"><img class="card-img-top" src= "{{new.image}}" alt="..." /></a>
     <div class="card-body">
         <div class="small text-muted">{{new.date_created}}</div>
         <h2 class="card-title">{{new.title}}</h2>
@@ -24,8 +24,8 @@
                 <a href="#!"><img class="view-mini" src= {{c.image}}  alt= "..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">{{c.date_created}}</div>
-                    <h2 class="card-title h4">{{c.image}}</h2>
-                    <p class="card-text">{{c.short_content}}</p>
+                    <h2 class="card-title h4">{{c.title}}</h2>
+                    <p class="card-text">{{c.image}}</p>
                     <a class="btn btn-primary" href="#!">Leer más →</a>
                 </div>     
             </div>
