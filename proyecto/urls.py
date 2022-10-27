@@ -13,15 +13,16 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from django.conf.urls.static import static
-from blog_portal.views import index as blog_index
-from blog_portal.views import MainPageView, About, ArticleDetailView
 
 urlpatterns = [
-    path('', MainPageView.as_view(), name='main-page'),
-    path('about/', About.as_view(), name="about"),
-    path('article/<pk>/', ArticleDetailView.as_view(), name='article-detail'),
+    path('admin/', admin.site.urls),
+    path('', include('blog_portal.urls')),
+    
 ]
 
+# Esta linea es para agregar nuevos directorios al static, en este caso la carpeta articles
+urlpatterns += static(settings.ARTICLES_URL, document_root=settings.ARTICLES_ROOT)

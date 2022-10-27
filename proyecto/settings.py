@@ -38,8 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog_portal.apps.BlogPortalConfig', #Se registra la aplicacion blog_portal
-    'ckeditor', # Controla los widget para los formularios en /admin
+    # De aca para abajo, los agregados
+    'blog_portal.apps.BlogPortalConfig',                            #Se registra la aplicacion blog_portal
+    'ckeditor',                                                     # Controla los widget para los formularios en /admin
     
 ]
 
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'proyecto.urls'
@@ -120,16 +122,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
+
 ARTICLES_ROOT = os.path.join(BASE_DIR, 'articles')
 ARTICLES_URL = 'articles/'
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
-    # os.path.join(BASE_DIR, 'articles'),
+    ('articles', ARTICLES_URL),
+    ('articles', os.path.join(BASE_DIR, 'articles')),
+    
 )
 
+STATICFILES_FINDERS =[
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -139,4 +147,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = "panel-login"
+# LOGIN_URL = "panel-login"

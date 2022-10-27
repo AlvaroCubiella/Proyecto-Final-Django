@@ -1,12 +1,15 @@
-{% extends 'blog_portal/base.html' %}
-<!-- {% load static %} -->
-{% block title%} {{headline.title}}{% endblock %}
-{% block headline%} {{headline.headline}} {% endblock %}
-{% block sub%}{{headline.sub}}{% endblock %}
+No pude resolver que cargue las imagenes del articulo (sin internet LPM) y no funciona con "static". Pero cuando cargas un articulo, las imagenes asociadas las deja en el raiz en una carpeta que se crea sola llamada "articles"
+SE que para configurar esa carpeta se hace desde el settings.py (abajo del todo) intente de agregar algunas cosas pero no me funcionaron. ESTE COMENTARIO ESTA EN EL INDEX.html, SOLO LO TIENEN QUE BORRAR
 
+{% extends 'blog_portal/base.html' %}
+{% block title%} {{head.title}}{% endblock %}
+{% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
+{% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
+
+<!-- Este bloque pone por encima y mas grande el ultimo articulo -->
 {% block new %}
 <div class="card mb-4">
-    <a href="#!"><img class="card-img-top" src= "{{new.image}}" alt="..." /></a>
+    <a href="#!"><img class="card-img-top" src= {{new.image}} alt="..." /></a>
     <div class="card-body">
         <div class="small text-muted">{{new.date_created}}</div>
         <h2 class="card-title">{{new.title}}</h2>
@@ -15,47 +18,51 @@
     </div>
 </div>
 {% endblock %}
+
+<!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora -->
 {% block columns %}
 <div class="row">
+    <!-- Aca cargo las articulos de orden impar-->
     <div class="col-lg-6">
-        <!-- Blog post-->
-        {% for c in left_col.left_col %}
+        {% for item in left_col.left_col %}
             <div class="card mb-4">      
-                <a href="#!"><img class="view-mini" src= {{c.image}}  alt= "..." /></a>
+                <a href="#!"><img class="card-img-top" src= {{item.image}}  alt= "..." /></a>
                 <div class="card-body">
-                    <div class="small text-muted">{{c.date_created}}</div>
-                    <h2 class="card-title h4">{{c.title}}</h2>
-                    <p class="card-text">{{c.image}}</p>
-                    <a class="btn btn-primary" href="#!">Leer más →</a>
+                    <div class="small text-muted">{{item.date_created}}</div>
+                    <h2 class="card-title h4">{{item.title}}</h2>
+                    <p class="card-text">{{item.short_content}}</p>
+                    <a class="btn btn-primary" href="url {{item.id}}">Leer más →</a>
                 </div>     
             </div>
         {% endfor %}    
     </div>   
+    <!-- Aca cargo las articulos de orden par-->
     <div class="col-lg-6">
-        <!-- Blog post-->
-        {% for c in rigth_col.rigth_col %}
+        {% for item in rigth_col.rigth_col %}
         <div class="card mb-4">
-            <a href="#!"><img class="view-mini" src={{c.image}} alt="..." /></a>
+            <a href="#!"><img class="card-img-top" src={{item.image}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
             <div class="card-body">
-                <div class="small text-muted">{{c.date_created}}</div>
-                <h2 class="card-title h4">{{c.title}}</h2>
-                <p class="card-text">{{c.short_content}}</p>
-                <a class="btn btn-primary" href="#!">Leer más →</a>
+                <div class="small text-muted">{{item.date_created}}</div>
+                <h2 class="card-title h4">{{item.title}}</h2>
+                <p class="card-text">{{item.short_content}}</p>
+                <a class="btn btn-primary" href="{{item.id}}">Leer más →</a>
             </div>
         </div>
         {% endfor %} 
     </div>   
 </div>
 {% endblock %}
-{% block pages %}
+
+<!-- Bloque para armar paginas y poder separar las noticias de a 4 por pagina -->
+<!-- {% block pages %}
     <nav aria-label="Pagination">
         <hr class="my-0" />
         <ul class="pagination justify-content-center my-4">        
             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Reciente</a></li>
-            {% for page in headline.pages %}       
+            {% for page in head.pages %}       
                 <li class="page-item"><a class="page-link" href="#!">{{page}}</a></li>      
             {% endfor %}  
             <li class="page-item"><a class="page-link" href="#!">Antiguas</a></li>
         </ul>
     </nav>
-{% endblock %}
+{% endblock %} -->

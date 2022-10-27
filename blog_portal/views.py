@@ -1,7 +1,8 @@
+from multiprocessing import context, get_context
+from django.contrib.staticfiles import storage
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, TemplateView, View
 from blog_portal.models import Article, Portal
-from proyecto.settings import BASE_DIR
 
 import os
 
@@ -14,8 +15,9 @@ def set_pages(instance):
     articles = instance.objects.all()
     pages = len(articles)/4
     if round(pages) < pages:
-        pages += 0.4
-    pages = round(pages)
+        pages = round(pages) + 1
+    else:
+        pages = round(pages)
     pages = range(1, pages+1)
     return pages
 
@@ -27,19 +29,20 @@ class BaseView(View):
         context['portal'] = Portal.objects.order_by('date_updated').first()
         return context 
 
-class MainPageView(BaseView, ListView):
+class MainPageView(BaseView, TemplateView):
     queryset = Article.objects.all()
     context_object_name = "articles"
     template_name = "blog_portal/index.html"
 
     def get(self, request):
+        context = self.get_context_data()
         # Cargo los articulos ordenados por fecha. Reverse es para poner la fecha mas reciente primera en la lista
         article = Article.objects.order_by('date_created').reverse()            
         left_col = article[0::2]            # Obtengo los impares de la lsita para armar la columna izquierda
         rigth_col = article[1::2]           # Obtengo los pares de la lsita para armar la columna derecha
         pages = set_pages(Article)
         # Configuro la cabecera del html
-        headline = {
+        head = {
             'title':'ABA Blogs Inicio',
             'headline':'Bienvenido a ABA Blog!',
             'sub':'Un trabajo de Agustina, Bruno y Alvaro para Coderhouse',
@@ -53,7 +56,7 @@ class MainPageView(BaseView, ListView):
             'short_content': left_col[0].short_content,
             'image': left_col[0].image,
         }
-
+        
         # Paso la lista de los articulos para la columna izquierda
         left_col = {
             'left_col': left_col,
@@ -63,11 +66,12 @@ class MainPageView(BaseView, ListView):
         rigth_col = {
             'rigth_col': rigth_col,
         }
-
-        return render(request, self.template_name, {'headline':headline, 'left_col':left_col, 'rigth_col':rigth_col, 'new':new})
-    
-    
-
+        context['head'] = head
+        context['new'] = new
+        context['left_col'] = left_col
+        context['rigth_col'] = rigth_col
+        
+        return render(request, self.template_name, context)
 
 class About(BaseView, TemplateView):
 
