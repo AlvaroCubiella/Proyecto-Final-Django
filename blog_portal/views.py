@@ -1,6 +1,6 @@
 from multiprocessing import context, get_context
 from django.contrib.staticfiles import storage
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView, View
 from blog_portal.models import Article, Portal
 
@@ -55,6 +55,7 @@ class MainPageView(BaseView, TemplateView):
             'title': left_col[0].title,
             'short_content': left_col[0].short_content,
             'image': left_col[0].image,
+            'id': left_col[0].id,
         }
         
         # Paso la lista de los articulos para la columna izquierda
@@ -78,11 +79,17 @@ class About(BaseView, TemplateView):
     template_name = "blog_portal/about.html"
 
 class ArticleDetailView(DetailView):
-
+    print(f"HOLA Articulo detalle")
     model = Article
     context_object_name = "article"
+    template_name = "blog_portal/article_detail.html"
     
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['portal'] = Portal.objects.order_by('date_updated').first()
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['portal'] = Portal.objects.order_by('date_updated').first()
+    #     return context
+
+    def get(self, request, pk):
+        context = get_object_or_404(self.model, pk=pk)
+        print(f"HOLA {context}")
+        return render(request, self.template_name, {'articles':context, 'pk':pk})

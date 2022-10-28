@@ -1,6 +1,3 @@
-No pude resolver que cargue las imagenes del articulo (sin internet LPM) y no funciona con "static". Pero cuando cargas un articulo, las imagenes asociadas las deja en el raiz en una carpeta que se crea sola llamada "articles"
-SE que para configurar esa carpeta se hace desde el settings.py (abajo del todo) intente de agregar algunas cosas pero no me funcionaron. ESTE COMENTARIO ESTA EN EL INDEX.html, SOLO LO TIENEN QUE BORRAR
-
 {% extends 'blog_portal/base.html' %}
 {% block title%} {{head.title}}{% endblock %}
 {% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
@@ -14,7 +11,7 @@ SE que para configurar esa carpeta se hace desde el settings.py (abajo del todo)
         <div class="small text-muted">{{new.date_created}}</div>
         <h2 class="card-title">{{new.title}}</h2>
         <p class="card-text">{{new.short_content}}</p>
-        <a class="btn btn-primary" href="#!">Leer más →</a>
+        <a class="btn btn-primary" href="{% url 'article-detail' new.id %}">Leer más →</a>
     </div>
 </div>
 {% endblock %}
@@ -31,7 +28,7 @@ SE que para configurar esa carpeta se hace desde el settings.py (abajo del todo)
                     <div class="small text-muted">{{item.date_created}}</div>
                     <h2 class="card-title h4">{{item.title}}</h2>
                     <p class="card-text">{{item.short_content}}</p>
-                    <a class="btn btn-primary" href="url {{item.id}}">Leer más →</a>
+                    <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
                 </div>     
             </div>
         {% endfor %}    
@@ -45,7 +42,10 @@ SE que para configurar esa carpeta se hace desde el settings.py (abajo del todo)
                 <div class="small text-muted">{{item.date_created}}</div>
                 <h2 class="card-title h4">{{item.title}}</h2>
                 <p class="card-text">{{item.short_content}}</p>
-                <a class="btn btn-primary" href="{{item.id}}">Leer más →</a>
+                <!-- {%if user.can_edit%} -->
+                <!-- <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Edit</a> -->
+                <!-- {% endif %} -->
+                <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
             </div>
         </div>
         {% endfor %} 

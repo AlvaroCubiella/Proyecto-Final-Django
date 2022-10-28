@@ -1,0 +1,16 @@
+{% extends "blog_portal/base.html" %}
+
+{% block title%} {{head.title}}{% endblock %}
+{% block headline%} {{articles.title}}  {% endblock %}
+{% block sub%}{{articles.date_created}}{% endblock %}
+
+{% block new %}
+{% csrf_token %}
+{{articles.image}}
+<div class="card mb-4">
+    <img class="card-img-top" src= {{ articles.image }} />
+    <div class="card-body">
+        <p class="card-text">{{articles.short_content}}</p>
+    </div>
+</div>
+{% endblock %}
