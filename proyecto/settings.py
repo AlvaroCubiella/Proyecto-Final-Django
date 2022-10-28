@@ -126,12 +126,17 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
 
-ARTICLES_ROOT = os.path.join(BASE_DIR, 'articles')
-ARTICLES_URL = 'articles/'
-STATICFILES_DIRS = (
-    ('articles', ARTICLES_URL),
-    ('articles', os.path.join(BASE_DIR, 'articles')),
+# ARTICLES_ROOT = os.path.join(BASE_DIR, 'articles')
+# ARTICLES_URL = 'articles/'
+# STATICFILES_DIRS = (
+#     ('articles', ARTICLES_URL),
+#     ('articles', os.path.join(BASE_DIR, 'articles')),
     
+# )
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'staticfiles'),
+    ('media', os.path.join(BASE_DIR, 'media')),
 )
 
 STATICFILES_FINDERS =[

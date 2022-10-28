@@ -25,4 +25,4 @@ urlpatterns = [
 ]
 
 # Esta linea es para agregar nuevos directorios al static, en este caso la carpeta articles
-urlpatterns += static(settings.ARTICLES_URL, document_root=settings.ARTICLES_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

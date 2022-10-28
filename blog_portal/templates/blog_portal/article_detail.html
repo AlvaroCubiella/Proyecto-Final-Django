@@ -6,9 +6,9 @@
 
 {% block new %}
 {% csrf_token %}
-{{articles.image}}
+{{articles.image.url}}
 <div class="card mb-4">
-    <img class="card-img-top" src= {{ articles.image }} />
+    <img class="card-img-top" src= {{articles.image.url}} />
     <div class="card-body">
         <p class="card-text">{{articles.short_content}}</p>
     </div>
