@@ -19,7 +19,7 @@
     <body>
 
         <!-- Responsive navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'main-page' %}">{{portal.name}}</a>
                 <!-- <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,15 +109,17 @@
             </div>
         </div>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
-            <footer class="text-muted py-5">
+        <footer class="py-5">
+            <section>
+            
                 <div class="container">
                   <p class="float-end mb-1">
-                    <a href="#">Go top</a>
+                    <a href="">Ir al comienzo</a>
                   </p>
                   <p class="mb-1">{{footer}}</p>
                 </div>
-              </footer>
+              
+            </section>
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; ABA Blog</p></div>
         </footer>
         <!-- Bootstrap core JS-->

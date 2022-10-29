@@ -89,6 +89,35 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
+/* Acomode un poco el pie de pagina */
+
+footer {
+  background-color: var(--bs-primary);
+}
+
+footer section{
+  float: right;
+}
+
+footer p{
+  margin: 0rem;
+  
+}
+
+footer a{
+  transition: color 0.3s ease;
+  margin: 0rem;
+  margin-top: 0rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none; 
+}
+
+footer a:hover{
+  color: cornsilk
+}
+
+/* hasta aca termina el pied e pagina */
+
 hr {
   margin: 1rem 0;
   color: inherit;
@@ -4508,17 +4537,23 @@ textarea.form-control-lg {
 }
 
 .card {
+  transition: box-shadow 0.3s ease;
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
+  
+}
+
+.card:hover{
   box-shadow: 0 0.1rem 0.4rem rgba(0,0,0,0.3)
 }
+
 .card > hr {
   margin-right: 0;
   margin-left: 0;
@@ -11286,5 +11321,5 @@ textarea.form-control-lg {
 
   .d-print-none {
     display: none !important;
-  }
+  } 
 }

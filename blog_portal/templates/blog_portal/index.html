@@ -17,7 +17,7 @@
 {% endblock %}
 
 <!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora -->
-<section class="container">
+<section>
 {% block columns %}
 <div class="row">
     <!-- Aca cargo las articulos de orden impar-->
@@ -25,12 +25,12 @@
         {% for item in left_col.left_col %}
             <div class="card mb-4">      
                 <a href="#!"><img class="card-img-top" src= {{item.image.url}}  alt= "..." /></a>
-                <article class="card-body">
+                <div class="card-body">
                     <div class="small text-muted">{{item.date_created}}</div>
                     <h2 class="card-title h4">{{item.title}}</h2>
                     <p class="card-text">{{item.short_content}}</p>
                     <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
-                </article>     
+                </div>     
             </div>
         {% endfor %}    
     </div>   
@@ -39,7 +39,7 @@
         {% for item in rigth_col.rigth_col %}
         <div class="card mb-4">
             <a href="#!"><img class="card-img-top" src={{item.image.url}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
-            <article class="card-body">
+            <div class="card-body">
                 <div class="small text-muted">{{item.date_created}}</div>
                 <h2 class="card-title h4">{{item.title}}</h2>
                 <p class="card-text">{{item.short_content}}</p>
@@ -47,13 +47,12 @@
                 <!-- <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Edit</a> -->
                 <!-- {% endif %} -->
                 <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
-            </article>
+            </div>
         </div>
         {% endfor %} 
     </div>   
 </div>
 {% endblock %}
-</section>
 
 <!-- Bloque para armar paginas y poder separar las noticias de a 4 por pagina -->
 <!-- {% block pages %}
