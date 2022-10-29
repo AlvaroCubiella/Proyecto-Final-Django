@@ -6,11 +6,22 @@
 
 {% block new %}
 {% csrf_token %}
-{{articles.image.url}}
-<div class="card mb-4">
-    <img class="card-img-top" src= {{articles.image.url}} />
-    <div class="card-body">
-        <p class="card-text">{{articles.short_content}}</p>
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div>
+        <h4 align="justify"> <strong>{{ articles.short_content }}</strong></h4>       
+      </div>
     </div>
-</div>
+  </section>
+  <main class="flex-shrink-0">
+    <div class="container">
+      <div style="text-align:center;">
+        <img class="card-img-top" src="{{ articles.image.url }}" /> 
+      </div>                
+      <div style="padding-top: 2em;">
+            <!-- Safe se pone para que no escriba todo el codigo HTML en lugar del texto con el formato apropiado -->
+            {{articles.content | safe }}  
+      </div>
+    </div>
+  </main>
 {% endblock %}

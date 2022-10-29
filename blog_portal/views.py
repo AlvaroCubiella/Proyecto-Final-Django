@@ -79,7 +79,6 @@ class About(BaseView, TemplateView):
     template_name = "blog_portal/about.html"
 
 class ArticleDetailView(DetailView):
-    print(f"HOLA Articulo detalle")
     model = Article
     context_object_name = "article"
     template_name = "blog_portal/article_detail.html"
@@ -91,5 +90,4 @@ class ArticleDetailView(DetailView):
 
     def get(self, request, pk):
         context = get_object_or_404(self.model, pk=pk)
-        print(f"HOLA {context}")
         return render(request, self.template_name, {'articles':context, 'pk':pk})
