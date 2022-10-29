@@ -1,0 +1,42 @@
+{% extends 'blog_portal/base.html' %}
+{% block title%} {{head.title}}{% endblock %}
+{% block headline%} Resultado de la busqueda  {% endblock %}
+{% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
+
+<!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora -->
+<section>
+    {% block columns %}
+    <div class="row">
+        <!-- Aca cargo las articulos de orden impar-->
+        <div class="col-lg-6">
+            {% for item in left_col.left_col %}
+                <div class="card mb-4">      
+                    <a href="#!"><img class="card-img-top" src= {{item.image.url}}  alt= "..." /></a>
+                    <div class="card-body">
+                        <div class="small text-muted">{{item.date_created}}</div>
+                        <h2 class="card-title h4">{{item.title}}</h2>
+                        <p class="card-text">{{item.short_content}}</p>
+                        <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
+                    </div>     
+                </div>
+            {% endfor %}    
+        </div>   
+        <!-- Aca cargo las articulos de orden par-->
+        <div class="col-lg-6">
+            {% for item in rigth_col.rigth_col %}
+            <div class="card mb-4">
+                <a href="#!"><img class="card-img-top" src={{item.image.url}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
+                <div class="card-body">
+                    <div class="small text-muted">{{item.date_created}}</div>
+                    <h2 class="card-title h4">{{item.title}}</h2>
+                    <p class="card-text">{{item.short_content}}</p>
+                    <!-- {%if user.can_edit%} -->
+                    <!-- <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Edit</a> -->
+                    <!-- {% endif %} -->
+                    <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
+                </div>
+            </div>
+            {% endfor %} 
+        </div>   
+    </div>
+    {% endblock %}

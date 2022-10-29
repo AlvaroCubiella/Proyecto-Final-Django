@@ -69,15 +69,18 @@
                 <!-- Side widgets-->
                 <div class="col-lg-4">
                     <!-- Search widget-->
-                    <div class="card mb-4">
-                        <div class="card-header">Búsqueda</div>
-                        <div class="card-body">
-                            <div class="input-group">
-                                <input class="form-control" type="text" placeholder="Ingrese texto a buscar..." aria-label="Ingrese texto a buscar.." aria-describedby="button-search" />
-                                <button class="btn btn-primary" id="button-search" type="button">Buscar</button>
+                    <form action="article/resultado_busqueda/" method="post">
+                        {% csrf_token %}
+                        <div class="card mb-4">
+                            <div class="card-header">Búsqueda</div>
+                            <div class="card-body">
+                                <div class="input-group">
+                                    <input name="text" class="form-control" type="text" placeholder="Ingrese texto a buscar..." aria-label="Ingrese texto a buscar.." aria-describedby="button-search" />
+                                    <button class="btn btn-primary" id="button-search" onclick="alert('Prueba habilitar el evento del boton')" type="button">Buscar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categorias</div>
