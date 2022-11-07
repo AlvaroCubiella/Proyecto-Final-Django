@@ -19,7 +19,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100)
     short_content = models.CharField(max_length=180)
     content = RichTextField()
-    image = models.ImageField(upload_to="articles", null=True, blank=True)
+    image = models.ImageField(upload_to="articles", blank=False)
     author = models.ForeignKey(Publisher, on_delete=models.DO_NOTHING)
     is_headline= models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)
@@ -27,7 +27,7 @@ class Article(models.Model):
     date_published = models.DateTimeField()
 
     def __str__(self) -> str:
-        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}: image:{self.image}"
+        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}"
 
 
 class Portal(models.Model):

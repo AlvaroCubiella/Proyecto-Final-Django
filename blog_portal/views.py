@@ -1,8 +1,9 @@
+from django.urls import reverse_lazy
 from multiprocessing import context, get_context
 from django.template import loader
 from django.contrib.staticfiles import storage
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import ListView, DetailView, TemplateView, View
+from django.views.generic import ListView, DetailView, TemplateView, View, CreateView
 from blog_portal.models import Article, Portal
 from blog_portal.forms import Search
 
@@ -75,6 +76,17 @@ class MainPageView(BaseView, TemplateView):
         
         return render(request, self.template_name, context)
 
+# class CreateArticle(CreateView):
+#     model = Article
+#     success_url = reverse_lazy('main-page')
+#     fields = ['title', 'short_content', 'content', 'image', 'author', 'date_published']
+
+class CreateArticle(CreateView):
+    model = Article
+    fields = ['title', 'short_content', 'content', 'author', 'image', 'is_headline', 'image', 'date_published']
+    template_name = "blog_portal/article_form.html"
+    success_url = reverse_lazy("main-page")
+
 class About(BaseView, TemplateView):
 
     template_name = "blog_portal/about.html"
@@ -118,5 +130,3 @@ class SearchArticle(BaseView, TemplateView):
         context['rigth_col'] = rigth_col
         
         return render(request, self.template_name, context)
-
-        return render(request, self.template_name, {'article':article})

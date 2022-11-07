@@ -1,0 +1,14 @@
+{% extends 'blog_portal/base.html' %}
+{% block title%} Crear articulo {% endblock %}
+{% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
+{% block sub%}Crear nuevo articulo{% endblock %}
+
+{% block new %}
+
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type = 'submit' value = 'Agregar'>
+    </form>
+
+{% endblock %}

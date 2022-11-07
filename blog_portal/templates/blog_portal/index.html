@@ -3,6 +3,9 @@
 {% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
 {% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
 
+Linea 46: hay que ver a la hora de gestionar los usuarios, los que son autores, habilitar el boque para que les aparezca el boton de editar articulo,
+sino que lo oculte
+
 <!-- Este bloque pone por encima y mas grande el ultimo articulo -->
 {% block new %}
 <div class="card mb-4">
@@ -43,10 +46,11 @@
                 <div class="small text-muted">{{item.date_created}}</div>
                 <h2 class="card-title h4">{{item.title}}</h2>
                 <p class="card-text">{{item.short_content}}</p>
-                <!-- {%if user.can_edit%} -->
-                <!-- <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Edit</a> -->
-                <!-- {% endif %} -->
+                {%if user.can_edit%} -->
+                    <a class="btn btn-edit"  href="{% url 'article-edit' item.id %}">Editar</a>
+                {% endif %}
                 <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
+                
             </div>
         </div>
         {% endfor %} 

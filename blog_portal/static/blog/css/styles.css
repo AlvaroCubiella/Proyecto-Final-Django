@@ -3057,6 +3057,13 @@ textarea.form-control-lg {
   opacity: 0.65;
 }
 
+/* Agrego nuevo atributos para el boton de editar */
+.btn-edit {
+  background-color: red;
+  border-color: red;  
+}
+
+
 .btn-primary {
   color: #fff;
   background-color: #0d6efd;
