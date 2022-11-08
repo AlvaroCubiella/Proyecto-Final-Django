@@ -14,10 +14,13 @@
     
         <!-- <link href="./index_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+        {% block ex_style %}{% endblock %}
     </head>
-    <body>
 
+    <body>
+        {% block user %}
+
+        {% endblock %}
         <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
@@ -26,18 +29,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button> -->
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" 
-                    aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+                    aria-expanded="false" aria-label="Toggle navigation"> 
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarHeader">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'main-page' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Acerca de...</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contáctanos</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Blog</a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Ingresar</a></li>
                     </ul>
                 </div>
+                {% block login %}
+                
+                {% endblock %}
             </div>
         </nav>
+
+
+
+
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">

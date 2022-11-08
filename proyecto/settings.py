@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # De aca para abajo, los agregados
     'blog_portal.apps.BlogPortalConfig',                            #Se registra la aplicacion blog_portal
+    'Panel.apps.PanelConfig',                                       #Se registra la aplicacion Panel
     'ckeditor',                                                     # Controla los widget para los formularios en /admin
-    
+
 ]
 
 MIDDLEWARE = [

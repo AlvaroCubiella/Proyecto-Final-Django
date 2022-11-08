@@ -1,0 +1,13 @@
+{% extends "blog_portal/base.html" %}
+{% block new %}
+<main class="flex-shrink-0">
+    <div class="container">
+        <a type="button" href = "{% url 'index-panel' %}" style="margin-top: 1em;" class="btn btn-sm btn-outline-primary" >Back to Panel</a>
+        <form method="post">{% csrf_token %}
+            <p>Are you sure you want to delete "{{ object }}"?</p>
+            {{ form }}
+            <input type="submit" value="Confirm">
+        </form>
+    </div>
+</main>
+{% endblock %}
