@@ -21,13 +21,12 @@
         {% block user %}
 
         {% endblock %}
-        <!-- Responsive navbar-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'main-page' %}">{{portal.name}}</a>
-                <!-- <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button> -->
+                </button>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" 
                     aria-expanded="false" aria-label="Toggle navigation"> 
                     <span class="navbar-toggler-icon"></span>
@@ -37,17 +36,17 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'main-page' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Acerca de...</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contáctanos</a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Ingresar</a></li>
                     </ul>
                 </div>
-                {% block login %}
-                
-                {% endblock %}
+                {% if user %}
+
+                {% else %}
+                    {% block login %}
+                    
+                    {% endblock %}
+                {% endif %}
             </div>
         </nav>
-
-
-
 
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">

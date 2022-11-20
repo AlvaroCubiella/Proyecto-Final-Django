@@ -4102,6 +4102,9 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
 }
 .navbar-nav .nav-link {
   padding-right: 0;

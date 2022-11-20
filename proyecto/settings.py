@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',                   # si o si tiene que ir primero para no entrar en conflicto con Session
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,9 +122,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'         # le informo a django que utilice el whitenoise
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')                                          # defino donde quiero que se almacenen los archivos "extras"
 STATIC_URL = 'static/'
 
 # ARTICLES_ROOT = os.path.join(BASE_DIR, 'articles')
@@ -136,7 +136,7 @@ STATIC_URL = 'static/'
 # )
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
+    # os.path.join(BASE_DIR, 'staticfiles'),
     ('media', os.path.join(BASE_DIR, 'media')),
 )
 
@@ -150,9 +150,7 @@ STATICFILES_FINDERS =[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = "blog-login"
+LOGIN_URL = "panel-login"
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# LOGIN_URL = "panel-login"

@@ -3,9 +3,6 @@
 {% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
 {% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
 
-Linea 46: hay que ver a la hora de gestionar los usuarios, los que son autores, habilitar el boque para que les aparezca el boton de editar articulo,
-sino que lo oculte
-
 <!-- Este bloque pone por encima y mas grande el ultimo articulo -->
 {% block new %}
 <div class="card mb-4">
@@ -23,7 +20,7 @@ sino que lo oculte
 <section>
 {% block columns %}
 <div class="row">
-    <!-- Aca cargo las articulos de orden impar-->
+    <!-- Aca cargo las articulos de orden impar (columna izquierda)-->
     <div class="col-lg-6">
         {% for item in left_col.left_col %}
             <div class="card mb-4">      
@@ -37,7 +34,7 @@ sino que lo oculte
             </div>
         {% endfor %}    
     </div>   
-    <!-- Aca cargo las articulos de orden par-->
+    <!-- Aca cargo las articulos de orden par (columna derecha)-->
     <div class="col-lg-6">
         {% for item in rigth_col.rigth_col %}
         <div class="card mb-4">

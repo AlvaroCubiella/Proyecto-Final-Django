@@ -1,12 +1,45 @@
 {% extends "blog_portal/base.html" %}
+{% block title%} Eliminar {% endblock %}
+{% block headline%} Eliminar Articulo Id: {{object.id}} {% endblock %}
+{% block sub%}Confirmar eliminar el articulo seleccionado{% endblock %}
+
 {% block new %}
 <main class="flex-shrink-0">
     <div class="container">
-        <a type="button" href = "{% url 'index-panel' %}" style="margin-top: 1em;" class="btn btn-sm btn-outline-primary" >Back to Panel</a>
         <form method="post">{% csrf_token %}
-            <p>Are you sure you want to delete "{{ object }}"?</p>
+            <p></p>
+            <h4>Esta seguro que desea eliminar el articulo "{{ object.title }}"?</h4>
+            <p>Detalle:</p>
+            <div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Autor</th>
+                    <th scope="col">Fecha publicado</th>
+                    <th scope="col">Fecha Creado</th>
+                    <th scope="col">Fecha Actualizado</th>
+                    <th scope="col">Accion</th>
+                  </tr>
+                </thead>
+                <tbody>
+                      <tr>
+                      <th scope="row">{{object.id}}</th>
+                      <td>{{object.title}}</td>
+                      <td>{{object.author}}</td>
+                      <td>{{object.date_published}}</td>
+                      <td>{{object.date_created}}</td>
+                      <td>{{object.date_updated}}</td>
+                      <td><input type="submit" value="Eliminar" class="btn btn-sm btn-outline-danger">
+                      </td>
+                      </tr>
+                  </tbody>
+            </table>
+            </div>
             {{ form }}
-            <input type="submit" value="Confirm">
+            <a type="button" href = "{% url 'index-panel' %}" style="margin-top: 1em;" class="btn btn-sm btn-outline-primary" >Volver al Panel</a>
+        
         </form>
     </div>
 </main>
