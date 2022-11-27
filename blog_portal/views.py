@@ -39,19 +39,20 @@ class MainPageView(BaseView, TemplateView):
     def get(self, request):
         context = self.get_context_data()
         # Cargo los articulos ordenados por fecha. Reverse es para poner la fecha mas reciente primera en la lista
-        article = Article.objects.order_by('date_created').reverse()            
-        left_col = article[0::2]            # Obtengo los impares de la lsita para armar la columna izquierda
-        rigth_col = article[1::2]           # Obtengo los pares de la lsita para armar la columna derecha
-        pages = set_pages(Article)
-        # Configuro la cabecera del html
+        article = Article.objects.order_by('date_created').reverse()    # En la ultima clase vi que se puede usar '-date_created', 
+                                                                        # pero preferi dejarlo asi, como me salio a mi en el barco.           
+        left_col = article[0::2]                                        # Obtengo los impares de la lsita para armar la columna izquierda
+        rigth_col = article[1::2]                                       # Obtengo los pares de la lsita para armar la columna derecha
+        
+        # Armo la cabecera del html
         head = {
-            'title':'ABA Blogs Inicio',
-            'headline':'Bienvenido a ABA Blog!',
-            'sub':'Un trabajo de Agustina, Bruno y Alvaro para Coderhouse',
-            'pages': pages,           
+            'title':'Trabajando a la mar',
+            'headline':'Bienvenido al mundo de la Oceanografía Fisica',
+            'sub':'Un trabajo de Alvaro Cubiella para Coderhouse',
+            # 'pages': pages,           
         }
     
-        # Configuro la vista de la nota mas reciente
+        # Armo la vista de la nota mas reciente
         new = {
             'date_created': left_col[0].date_created,    
             'title': left_col[0].title,
@@ -78,14 +79,9 @@ class MainPageView(BaseView, TemplateView):
 
 # class CreateArticle(CreateView):
 #     model = Article
-#     success_url = reverse_lazy('main-page')
-#     fields = ['title', 'short_content', 'content', 'image', 'author', 'date_published']
-
-class CreateArticle(CreateView):
-    model = Article
-    fields = ['title', 'short_content', 'content', 'author', 'image', 'is_headline', 'image', 'date_published']
-    template_name = "blog_portal/article_form.html"
-    success_url = reverse_lazy("main-page")
+#     fields = ['title', 'short_content', 'content', 'author', 'image', 'is_headline', 'image']
+#     template_name = "blog_portal/article_form.html"
+#     success_url = reverse_lazy("main-page")
 
 class About(BaseView, TemplateView):
 
@@ -96,11 +92,6 @@ class ArticleDetailView(DetailView):
     context_object_name = "article"
     template_name = "blog_portal/article_detail.html"
     
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['portal'] = Portal.objects.order_by('date_updated').first()
-    #     return context
-
     def get(self, request, pk):
         context = get_object_or_404(self.model, pk=pk)
         return render(request, self.template_name, {'articles':context, 'pk':pk})
@@ -116,12 +107,12 @@ class SearchArticle(BaseView, TemplateView):
         left_col = article[0::2]            # Obtengo los impares de la lsita para armar la columna izquierda
         rigth_col = article[1::2]           # Obtengo los pares de la lsita para armar la columna derecha
 
-        # Paso la lista de los articulos para la columna izquierda
+        # Armo la lista de los articulos para la columna izquierda
         left_col = {
             'left_col': left_col,
         }
         
-        # Paso la lista de los articulos para la columna derecha
+        # Armo la lista de los articulos para la columna derecha
         rigth_col = {
             'rigth_col': rigth_col,
         }

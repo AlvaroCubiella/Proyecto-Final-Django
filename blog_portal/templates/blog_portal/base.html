@@ -23,7 +23,7 @@
         {% endblock %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'main-page' %}">{{portal.name}}</a>
+                <a class="navbar-brand" href="{% url 'main-page' %}">Oceanografia</a>
                 <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -34,7 +34,7 @@
                 <div class="collapse navbar-collapse" id="navbarHeader">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link" href="{% url 'main-page' %}">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Acerca de...</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Que es la Oceanografia?</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contáctanos</a></li>
                     </ul>
                 </div>
@@ -68,7 +68,7 @@
                     {% endblock %}
                     
                     {% block columns %}
-                        <!-- genero las dos columnas con dos filas para colocar 4 articulos por paguina -->
+                        <!-- genero las dos columnas con dos filas para colocar 4 articulos por pagina -->
                     {% endblock %}
 
                     <!-- Pagination-->
@@ -85,7 +85,7 @@
                             <div class="card-header">Búsqueda</div>
                             <div class="card-body">
                                 <div class="input-group">
-                                    <input id="serach" name="text" class="form-control" type="text" placeholder="Ingrese texto a buscar..." aria-label="Ingrese texto a buscar.." aria-describedby="button-search" />
+                                    <input id="serach" name="text" class="form-control" type="text" placeholder="Buscar Articulo..." aria-label="Ingrese texto a buscar.." aria-describedby="button-search" />
                                     <button class="btn btn-primary" id="button-search" type="submit">Buscar</button>
                                 </div>
                             </div>
@@ -98,26 +98,26 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                        <li><a href="#!">Reciclaje</a></li>
-                                        <li><a href="#!">Medio Ambiente</a></li>
-                                        <li><a href="#!">Huella de carbono</a></li>
+                                        <li><a href="#!">Oceanografía Física</a></li>
+                                        <li><a href="#!">Oceanografía Química</a></li>
+                                        <li><a href="#!">Oceanografía Biológica</a></li>
                                     </ul>
                                 </div>
-                                <div class="col-sm-6">
+                                <!-- <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="#!">Hábitos Sostenibles</a></li>
                                         <li><a href="#!">Movilidad Sostenible</a></li>
                                         <li><a href="#!">Educación Ambiental</a></li>
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                     <!-- Side widget-->
-                    <div class="card mb-4">
+                    <!-- <div class="card mb-4">
                         <div class="card-header">Side Widget</div>
                         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -133,7 +133,7 @@
                 </div>
               
             </section>
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; ABA Blog</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Oceanografía Física Blog</p></div>
         </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

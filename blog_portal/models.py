@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
 
-
 class Publisher(models.Model):
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     avatar = models.ImageField(upload_to="avatars", null=True)
@@ -24,16 +23,14 @@ class Article(models.Model):
     is_headline= models.BooleanField()
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    date_published = models.DateTimeField()
+    date_published = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
-        return f"ID#{self.id}; Titulo: {self.title}; Autor: {self.author}"
+        return f"# {self.id}; Titulo: {self.title}; Autor: {self.author}"
 
 
 class Portal(models.Model):
     name = models.CharField(max_length=20)
-    social_network_one = models.URLField(null=True)
-    social_network_two = models.URLField(null=True)
     email = models.EmailField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)

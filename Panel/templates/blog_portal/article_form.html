@@ -13,10 +13,11 @@
         <form method="post" enctype="multipart/form-data" style="margin-top: 1em;">
             {% csrf_token %}
             {{ form.as_p }}
+            <!-- Segun desde donde se llame el template nombra el boton de accion -->
             {% if request.resolver_match.url_name == "article-update" %}
-                <input type="submit" value="Update">
+                <input type="submit" value="Modificar">
             {% else %}
-                <input type="submit" value="Create">
+                <input type="submit" value="Crear">
             {% endif %}    
         </form>
          

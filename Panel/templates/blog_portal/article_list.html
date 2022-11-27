@@ -81,7 +81,7 @@
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
     <a href="#">Modificar</a>
-    <a href="#">Services</a>
+    <a href="#">Panel</a>
     <a href="#">Clients</a>
     <a href="#">Cerrar Sesion</a>
   </div>
@@ -114,36 +114,41 @@
   <table class="table">
   <thead>
     <tr>
-      <th scope="col">Id</th>
-      <th scope="col">title</th>
-      <th scope="col">publisher</th>
-      <th scope="col">date published</th>
-      <th scope="col">date created</th>
-      <th scope="col">date updated</th>
-      <th scope="col">actions</th>
+      <th scope="col">#</th>
+      <th scope="col">Titulo</th>
+      <th scope="col">Autor</th>
+      <th scope="col">Fecha publicación</th>
+      <th scope="col">Fecha creado</th>
+      <th scope="col">Modificado</th>
+      <th scope="col">Acciones</th>
     </tr>
   </thead>
         <tbody>
+        {% if articles %}
           {%for article in articles %}
             <tr>
-            <th scope="row">{{article.id}}</th>
-            <td>{{article.title}}</td>
-            <td>{{article.author}}</td>
-            <td>{{article.date_published}}</td>
-            <td>{{article.date_created}}</td>
-            <td>{{article.date_updated}}</td>
-            <td>
-              
-              <a type="button" href="{% url 'article-delete' article.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
-            </td>
+              <th scope="row">{{article.id}}</th>
+              <td>{{article.title}}</td>
+              <td>{{article.author}}</td>
+              <td>{{article.date_published}}</td>
+              <td>{{article.date_created}}</td>
+              <td>{{article.date_updated}}</td>
+              <td>  
+                <a type="button" href="{% url 'article-delete' article.id %}" class="btn btn-sm btn-outline-danger">Borrar</a>
+                <a type="button" href="{% url 'article-update' article.id %}" class="btn btn-sm btn-outline-danger">Modificar</a>
+              </td>
             </tr>
           {% endfor %}
-        </tbody>
+
+        {% else %}
+          <h1> No hay registros de articulos</h1>
+        {% endif %}
+      </tbody>
     </table>
         
     </div>
   </main>
 
-  <a type="button" href="#" class="btn btn-sm btn-outline-danger">Agregar Articulo</a>
+  <a type="button" href="{% url 'article-create' %}" class="btn btn-sm btn-outline-danger">Agregar Articulo</a>
 
 {% endblock %}

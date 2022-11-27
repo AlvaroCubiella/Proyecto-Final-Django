@@ -23,10 +23,15 @@ class PanelView(LoginRequiredMixin, BaseView, ListView):
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
-    fields = ['short_content','title' , 'content', 'author', 'image', 'is_headline', 'image', 'date_published']
+    fields = ['short_content','title' , 'content', 'author', 'image', 'is_headline', 'image']
     template_name = "blog_portal/article_form.html"
     success_url = reverse_lazy("index-panel")
 
 class ArticleDeleteView(LoginRequiredMixin, BaseView, DeleteView):
     model = Article
+    success_url = reverse_lazy('index-panel')
+
+class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+    model = Article
+    fields = ['title', 'short_content', 'content', 'author', 'image', 'is_headline', 'image']
     success_url = reverse_lazy('index-panel')

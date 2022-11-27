@@ -1,12 +1,13 @@
 {% extends 'blog_portal/base.html' %}
 {% block title%} {{head.title}}{% endblock %}
-{% block headline%} Bienvenidos a ABA Blogs  {% endblock %}
-{% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
+{% block headline%} Bienvenidos al Blog de Oceanografía Física {% endblock %}
+{% block sub%}Campañas de investigación Oceanograficas del INIDEP{% endblock %}
 
 <!-- Este bloque pone por encima y mas grande el ultimo articulo -->
 {% block new %}
+aca va el user {{user.username}}
 <div class="card mb-4">
-    <a href="#!"><img class="card-img-top" src= {{new.image.url}} alt="..." /></a>
+    <a href="{% url 'article-detail' new.id %}"><img class="card-img-top" src= {{new.image.url}} alt="..." /></a>
     <div class="card-body">
         <div class="small text-muted">{{new.date_created}}</div>
         <h2 class="card-title">{{new.title}}</h2>
@@ -24,7 +25,7 @@
     <div class="col-lg-6">
         {% for item in left_col.left_col %}
             <div class="card mb-4">      
-                <a href="#!"><img class="card-img-top" src= {{item.image.url}}  alt= "..." /></a>
+                <a href="{% url 'article-detail' item.id %}"><img class="card-img-top" src= {{item.image.url}}  alt= "..." /></a>
                 <div class="card-body">
                     <div class="small text-muted">{{item.date_created}}</div>
                     <h2 class="card-title h4">{{item.title}}</h2>
@@ -38,16 +39,18 @@
     <div class="col-lg-6">
         {% for item in rigth_col.rigth_col %}
         <div class="card mb-4">
-            <a href="#!"><img class="card-img-top" src={{item.image.url}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
+            <a href="{% url 'article-detail' item.id %}"><img class="card-img-top" src={{item.image.url}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
             <div class="card-body">
                 <div class="small text-muted">{{item.date_created}}</div>
                 <h2 class="card-title h4">{{item.title}}</h2>
                 <p class="card-text">{{item.short_content}}</p>
-                {%if user.can_edit%} -->
-                    <a class="btn btn-edit"  href="{% url 'article-edit' item.id %}">Editar</a>
-                {% endif %}
-                <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
-                
+                <tr>
+                    <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
+                    {% if user.can_edit %}
+                    user.can_edit
+                        <a class="btn btn-sm btn-outline-danger"  href="{% url 'article-update' item.id %}">Editar</a>
+                    {% endif %}
+                </tr>
             </div>
         </div>
         {% endfor %} 
@@ -56,15 +59,5 @@
 {% endblock %}
 
 <!-- Bloque para armar paginas y poder separar las noticias de a 4 por pagina -->
-<!-- {% block pages %}
-    <nav aria-label="Pagination">
-        <hr class="my-0" />
-        <ul class="pagination justify-content-center my-4">        
-            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Reciente</a></li>
-            {% for page in head.pages %}       
-                <li class="page-item"><a class="page-link" href="#!">{{page}}</a></li>      
-            {% endfor %}  
-            <li class="page-item"><a class="page-link" href="#!">Antiguas</a></li>
-        </ul>
-    </nav>
-{% endblock %} -->
+<!-- No Llego a terminarlo -->
+
