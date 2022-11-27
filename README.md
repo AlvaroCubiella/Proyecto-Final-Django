@@ -55,15 +55,15 @@ Python 3.9.7
 >>>
 ```
 
-## Lo primero que debemos hacer es crear nuestro repositorio en github  https://github.com/MartinMadda/Final-Coderhouse.git.
+#### Lo primero que debemos hacer es crear nuestro repositorio en github  https://github.com/AlvaroCubiella/Proyecto-Final-Django.git.
 
-## Luego en VScode vamos a crear una nueva carpeta y vamos a abrir la terminal para clonar nuestro repositorio y asi poder trabajar en él de la siguiente manera:
+#### Luego en VScode vamos a crear una carpeta y vamos a abrirla desde la terminal para clonar nuestro repositorio:
 
 ```ps
-git clone https://github.com/MartinMadda/Final-Coderhouse.git .
+git clone https://github.com/AlvaroCubiella/Proyecto-Final-Django.git .
 ```
 ```ps
-"Es muy importante el espacio y el .(punto) ya que asi nuestro repositorio no creara otras carpetas dentro de la nuestra."
+"Tener en cuenta el espacio y el .(punto) ya que asi no se creara una nueva carpeta dentro de nuestro repositorio."
 ```
 
 ```
