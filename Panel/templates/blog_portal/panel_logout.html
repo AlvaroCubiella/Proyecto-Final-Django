@@ -1,2 +1,8 @@
-<h1>Logout from Panel</h1>
-<a href="{% url 'main-page' %}">go to news page</a>
+{% extends "blog_portal/base.html" %}
+{% block title%} Cesion cerrada!! {% endblock %}
+{% block headline%} Cierre de sesión exitoso {% endblock %}
+{% block sub%}Esperamos tu regreso{% endblock %}
+
+{% block new %}
+<a href="{% url 'main-page' %}">Volver a pagina principal</a>
+{% endblock new %}

@@ -5,24 +5,26 @@
 
 <!-- Este bloque pone por encima y mas grande el ultimo articulo -->
 {% block new %}
-aca va el user {{user.username}}
-<div class="card mb-4">
-    <a href="{% url 'article-detail' new.id %}"><img class="card-img-top" src= {{new.image.url}} alt="..." /></a>
-    <div class="card-body">
-        <div class="small text-muted">{{new.date_created}}</div>
-        <h2 class="card-title">{{new.title}}</h2>
-        <p class="card-text">{{new.short_content}}</p>
-        <a class="btn btn-primary" href="{% url 'article-detail' new.id %}">Leer más →</a>
-    </div>
-</div>
+    {% if new.title|length > 0 %}
+        <div class="card mb-4">
+            <a href="{% url 'article-detail' new.id %}"><img class="card-img-top" src= {{new.image.url}} alt="..." /></a>
+            <div class="card-body">
+                <div class="small text-muted">{{new.date_created}}</div>
+                <h2 class="card-title">{{new.title}}</h2>
+                <p class="card-text">{{new.short_content}}</p>
+                <a class="btn btn-primary" href="{% url 'article-detail' new.id %}">Leer más →</a>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
-<!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora -->
+<!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora mas recientes -->
 <section>
 {% block columns %}
 <div class="row">
     <!-- Aca cargo las articulos de orden impar (columna izquierda)-->
     <div class="col-lg-6">
+        {% if left_col.left_col %}
         {% for item in left_col.left_col %}
             <div class="card mb-4">      
                 <a href="{% url 'article-detail' item.id %}"><img class="card-img-top" src= {{item.image.url}}  alt= "..." /></a>
@@ -33,10 +35,12 @@ aca va el user {{user.username}}
                     <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
                 </div>     
             </div>
-        {% endfor %}    
+        {% endfor %} 
+        {% endif %}   
     </div>   
     <!-- Aca cargo las articulos de orden par (columna derecha)-->
     <div class="col-lg-6">
+        {% if rigth_col.rigth_col %}
         {% for item in rigth_col.rigth_col %}
         <div class="card mb-4">
             <a href="{% url 'article-detail' item.id %}"><img class="card-img-top" src={{item.image.url}} alt="..." /></a>                      <!-- VER DETALLE DEL PROBLEMA ARRIBA-->
@@ -53,7 +57,8 @@ aca va el user {{user.username}}
                 </tr>
             </div>
         </div>
-        {% endfor %} 
+        {% endfor %}
+        {% endif %} 
     </div>   
 </div>
 {% endblock %}

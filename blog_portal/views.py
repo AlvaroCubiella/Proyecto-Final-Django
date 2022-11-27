@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, TemplateView, View, CreateView
 from blog_portal.models import Article, Portal
 from blog_portal.forms import Search
+from django.urls import NoReverseMatch
 
 import os
 
@@ -32,18 +33,21 @@ class BaseView(View):
         return context 
 
 class MainPageView(BaseView, TemplateView):
-    queryset = Article.objects.all()
+    # queryset = Article.objects.all()
     context_object_name = "articles"
     template_name = "blog_portal/index.html"
 
     def get(self, request):
         context = self.get_context_data()
         # Cargo los articulos ordenados por fecha. Reverse es para poner la fecha mas reciente primera en la lista
-        article = Article.objects.order_by('date_created').reverse()    # En la ultima clase vi que se puede usar '-date_created', 
-                                                                        # pero preferi dejarlo asi, como me salio a mi en el barco.           
-        left_col = article[0::2]                                        # Obtengo los impares de la lsita para armar la columna izquierda
-        rigth_col = article[1::2]                                       # Obtengo los pares de la lsita para armar la columna derecha
-        
+        try:
+            article = Article.objects.order_by('date_created').reverse()    # En la ultima clase vi que se puede usar '-date_created', 
+                                                                            # pero preferi dejarlo asi, como me salio a mi en el barco.           
+            left_col = article[0::2]                                        # Obtengo los impares de la lsita para armar la columna izquierda
+            rigth_col = article[1::2]                                       # Obtengo los pares de la lsita para armar la columna derecha
+        except NoReverseMatch:
+            left_col = False
+            rigth_col = False
         # Armo la cabecera del html
         head = {
             'title':'Trabajando a la mar',
@@ -53,13 +57,16 @@ class MainPageView(BaseView, TemplateView):
         }
     
         # Armo la vista de la nota mas reciente
-        new = {
-            'date_created': left_col[0].date_created,    
-            'title': left_col[0].title,
-            'short_content': left_col[0].short_content,
-            'image': left_col[0].image,
-            'id': left_col[0].id,
-        }
+        try:
+            new = {
+                'date_created': left_col[0].date_created,    
+                'title': left_col[0].title,
+                'short_content': left_col[0].short_content,
+                'image': left_col[0].image,
+                'id': left_col[0].id,
+            }
+        except IndexError:
+            new = ''
         
         # Paso la lista de los articulos para la columna izquierda
         left_col = {
@@ -74,7 +81,7 @@ class MainPageView(BaseView, TemplateView):
         context['new'] = new
         context['left_col'] = left_col
         context['rigth_col'] = rigth_col
-        
+        print(f"El valor de new es: {len(new)}")
         return render(request, self.template_name, context)
 
 # class CreateArticle(CreateView):

@@ -1,6 +1,12 @@
+{% extends "blog_portal/base.html" %}
+{% block title%} Ingresar {% endblock %}
+{% block headline%} Ingreso de Usuario {% endblock %}
+
+{% block new %}
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <button type="submit">Login</button>
+    <button type="submit" class="btn btn-sm btn-outline-primary">Ingresar</button>
 </form>
+{% endblock %}
 

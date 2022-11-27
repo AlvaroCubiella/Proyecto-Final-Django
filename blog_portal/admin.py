@@ -1,5 +1,6 @@
 from django.contrib import admin
-from blog_portal.models import Article, Portal, Publisher
+from blog_portal.models import *
+from Panel.models import *
 
 admin.site.register(Article)
 admin.site.register(Portal)

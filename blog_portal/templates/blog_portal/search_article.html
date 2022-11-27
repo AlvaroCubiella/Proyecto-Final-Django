@@ -1,7 +1,7 @@
 {% extends 'blog_portal/base.html' %}
-{% block title%} ABA - Buscar {% endblock %}
+{% block title%} O. Física - Buscar {% endblock %}
 {% block headline%} Resultado de la busqueda  {% endblock %}
-{% block sub%}Un desarrollo de Agustina, Bruno y Alvaro para CoderHouse{% endblock %}
+{% block sub%}Se encontraron {{item|length}} articulos con la palabra clave ingresada{% endblock %}
 
 <!-- Este bloque pone en dos columnas las noticias ordenadas por fecha y hora -->
 <section>
@@ -30,10 +30,6 @@
                     <div class="small text-muted">{{item.date_created}}</div>
                     <h2 class="card-title h4">{{item.title}}</h2>
                     <p class="card-text">{{item.short_content}}</p>
-                    <!-- {%if user.can_edit%} -->
-                    <!-- <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Edit</a> -->
-                    <!-- {% endif %} -->
-                    <a class="btn btn-primary" href="{% url 'article-detail' item.id %}">Leer más →</a>
                 </div>
             </div>
             {% endfor %} 
